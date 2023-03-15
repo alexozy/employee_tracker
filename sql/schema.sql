@@ -1,3 +1,0 @@
--- DROP
--- CREATE
--- USE
