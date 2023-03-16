@@ -20,7 +20,7 @@ VALUES
 ('Mona', 'Lisa',3),
 ('Lil', 'Wayne', 5),
 ('Chance','The Rapper', 5)
-('Michael','Scott',4);
+('J','Cole',4);
 
 
 UPDATE `employee_db`.`employee` SET `manager_id` = '1' WHERE (`id` > '1');

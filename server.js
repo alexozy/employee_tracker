@@ -15,9 +15,6 @@ const connection = mysql.createConnection (
 );
 
 connection.connect()
-
-
-
 // mysql2 code: create the connection exposes promise ()
 const con = mysql.createConnection(
     {host:'localhost', user: 'root', database: 'test'}
@@ -29,5 +26,45 @@ const con = mysql.createConnection(
     .catch(console.log)
     .then( () => con.end());
   
+// START
+const empStart = (data) => {
+  inquirer
+  .prompt({
+    name:"Start",
+    type: 'list',
+    message: ' Please select one:',
+    choices: ['All Departments', 
+    'All Roles', 
+    'All Employees',
+    'Add Department',
+    'Add Role',
+    'Update Role',
+    'Add Employee',
+  ]
+  })
+  .then((data)=> {
+    switch (data.Start){
+      case "All Departments":
+        allDepartments();
+        break;
+      case 'All Roles':
+        allRoles();
+        break;
+      case 'Add Departments':
+        addDepartment();
+      case 'Add Role':
+        addRole ();
+        break;
+      case 'Update Role':
+        updateRole();
+        break;
+      case 'Add Employee':
+        addEmployee();
+    }
+    return data;
+  })
+};
 
 
+
+empStart();
