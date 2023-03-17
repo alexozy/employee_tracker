@@ -47,24 +47,64 @@ const empStart = (data) => {
       case "All Departments":
         allDepartments();
         break;
+      case 'Add Departments':
+          addDepartment();
       case 'All Roles':
         allRoles();
         break;
-      case 'Add Departments':
-        addDepartment();
       case 'Add Role':
         addRole ();
         break;
       case 'Update Role':
         updateRole();
         break;
+      case 'All Employees':
+        allEmployees();
       case 'Add Employee':
         addEmployee();
     }
     return data;
-  })
+  });
 };
 
 
-
 empStart();
+
+// 'All Departments', 
+const allDepartments = () => {
+  connection.query(
+    `SELECT department.name, department.id FROM department;`,
+    function (err, res){
+      if(err) throw err;
+      console.table(res);
+      empStart()
+    }
+  );
+};
+
+// 'All Roles', 
+const allRoles = () => {
+  connection.query(
+    `SELECT roles.id AS roles_id, role.title, role.salary, department_id AS department_id FROM roles;`,
+    function (err, res){
+      if(err) throw err;
+      console.table(res);
+      empStart()
+    }
+  );
+};
+
+// 'All Employees',
+const allEmployees = () =>{};
+
+// 'Add Department',
+const addDepartment = () =>{};
+
+// 'Add Role',
+const addRole = () =>{};
+
+// 'Update Role',
+const updateRole = () =>{};
+
+// 'Add Employee',
+const addEmployee =() =>{};
