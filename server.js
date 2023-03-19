@@ -1,10 +1,10 @@
 // import & require mysql & dependencies/packages 
-// require('dotenv').config();
+require('dotenv').config();
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const consoleTable = require('console.table');
 
-const connection = mysql.createConnection (
+const con= mysql.createConnection (
     {
         host: 'localhost',
         port: 3306,
@@ -14,17 +14,20 @@ const connection = mysql.createConnection (
       }
 );
 
-connection.connect()
+con.connect(err => {
+  if(err)throw err
+  empStart();
+})
 // mysql2 code: create the connection exposes promise ()
-const con = mysql.createConnection(
-    {host:'localhost', user: 'root', database: 'test'}
-  );
-  con.promise().query("SELECT 1")
-    .then( ([rows,fields]) => {
-      console.log(rows);
-    })
-    .catch(console.log)
-    .then( () => con.end());
+// const con = mysql.createConnection(
+//     {host:'localhost', user: 'root', database: 'test'}
+//   );
+  // con.promise().query("SELECT 1")
+  //   .then( ([rows,fields]) => {
+  //     console.log(rows);
+  //   })
+  //   .catch(console.log)
+  //   .then( () => con.end());
   
 // START
 const empStart = (data) => {
@@ -68,7 +71,7 @@ const empStart = (data) => {
 };
 
 
-empStart();
+
 
 // 'All Departments', 
 const allDepartments = () => {
@@ -101,6 +104,9 @@ const allEmployees = () =>{};
 const addDepartment = () =>{};
 
 // 'Add Role',
+// inquire prompt for new name/depart then do query inside the inquire
+// inquire.prompt
+// require actual ID 
 const addRole = () =>{};
 
 // 'Update Role',
