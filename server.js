@@ -18,7 +18,7 @@ con.connect(err => {
   if(err)throw err
   empStart();
 })
-// mysql2 code: create the connection exposes promise ()
+// mysql2 code: create the con exposes promise ()
 // const con = mysql.createConnection(
 //     {host:'localhost', user: 'root', database: 'test'}
 //   );
@@ -75,8 +75,8 @@ const empStart = (data) => {
 
 // 'All Departments', 
 const allDepartments = () => {
-  connection.query(
-    `SELECT department.name, department.id FROM department;`,
+  con.query(
+    `SELECT department.department_name, department.id FROM department;`,
     function (err, res){
       if(err) throw err;
       console.table(res);
@@ -87,8 +87,8 @@ const allDepartments = () => {
 
 // 'All Roles', 
 const allRoles = () => {
-  connection.query(
-    `SELECT roles.id AS roles_id, role.title, role.salary, department_id AS department_id FROM roles;`,
+  con.query(
+    `SELECT roles.id, roles.title, roles.salary, roles.department_id FROM roles;`,
     function (err, res){
       if(err) throw err;
       console.table(res);
