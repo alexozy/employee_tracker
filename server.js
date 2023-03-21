@@ -36,13 +36,14 @@ const empStart = (data) => {
     name:"Start",
     type: 'list',
     message: ' Please select one:',
-    choices: ['All Departments', 
-    'All Roles', 
-    'All Employees',
+    choices: [
+      'All Departments', 
     'Add Department',
+    'All Roles', 
     'Add Role',
-    'Update Role',
+    'All Employees',
     'Add Employee',
+    'Update Employee',
   ]
   })
   .then((data)=> {
@@ -58,13 +59,13 @@ const empStart = (data) => {
       case 'Add Role':
         addRole ();
         break;
-      case 'Update Role':
-        updateRole();
-        break;
       case 'All Employees':
         allEmployees();
       case 'Add Employee':
         addEmployee();
+        case 'Update Employee':
+        updateEmployee();
+        break;
     }
     return data;
   });
@@ -85,25 +86,6 @@ const allDepartments = () => {
   );
 };
 
-// 'All Roles', 
-const allRoles = () => {
-  con.query(
-    `SELECT roles.id, roles.title, roles.salary, roles.department_id FROM roles;`,
-    function (err, res){
-      if(err) throw err;
-      console.table(res);
-      empStart()
-    }
-  );
-};
-
-// 'All Employees',
-const allEmployees = () =>{
-  con.query(
-
-  )
-};
-
 // 'Add Department',
 const addDepartment = () =>{
   return inquirer
@@ -120,6 +102,18 @@ const addDepartment = () =>{
     con.query(add, inputs, (err, res) => { return input;});
   })
   .then(()=> {empStart();});
+};
+
+// 'All Roles', 
+const allRoles = () => {
+  con.query(
+    `SELECT roles.id, roles.title, roles.salary, roles.department_id FROM roles;`,
+    function (err, res){
+      if(err) throw err;
+      console.table(res);
+      empStart();
+    }
+  );
 };
 
 const addRole = () =>{
@@ -158,8 +152,17 @@ return inquirer
   });
 };
 
-// 'Update Role',
-const updateRole = () =>{};
+// 'All Employees',
+const allEmployees = () =>{
+  con.query( 
+    `SELECT employee.id, employee.first_name, employee.last_name, employee.role_id FROM employee`,
+    function (err, res){
+      if (err) throw err;
+      console.table(res);
+      empStart();
+    }
+  )
+};
 
 // 'Add Employee',
 const addEmployee =() =>{
@@ -168,12 +171,12 @@ const addEmployee =() =>{
     {
       type: "input",
       name: "first_name",
-      message: "Enter First Name:",
+      message: "First Name:",
     },
     {
       type: "input",
       name: "last_name",
-      message: "Enter Last Name:",
+      message: "Last Name:",
     },
     {
       type: "input",
@@ -184,8 +187,23 @@ const addEmployee =() =>{
       type: "list",
         name: "manager_id",
         message: "Select Manager ID:",
-        choices: ["",""],
+        choices: ["1","2"],
     },
   ])
-    .then
-};
+    .then((input)=>{
+      const empInfo = [ input.first_name, input.last_name, input.role_id,input.manager_id,];
+      const add = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+      con.query (add, empInfo, (err, res)=> {
+        if (err) throw err;
+        return input;
+      });
+    })
+    .then (()=> {
+      empStart();
+    });
+  };
+
+  // 'Update Employee',
+  const updateEmployee = () =>{
+
+  };
