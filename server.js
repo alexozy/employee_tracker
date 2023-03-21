@@ -98,19 +98,94 @@ const allRoles = () => {
 };
 
 // 'All Employees',
-const allEmployees = () =>{};
+const allEmployees = () =>{
+  con.query(
+
+  )
+};
 
 // 'Add Department',
-const addDepartment = () =>{};
+const addDepartment = () =>{
+  return inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'department_name',
+      message: "Add your department name:",
+    },
+  ])
+  .then((input) => {
+    const add = `INSERT INTO department (name) VALUES (?)`;
+    const inputs = input.name;
+    con.query(add, inputs, (err, res) => { return input;});
+  })
+  .then(()=> {empStart();});
+};
 
-// 'Add Role',
-// inquire prompt for new name/depart then do query inside the inquire
-// inquire.prompt
-// require actual ID 
-const addRole = () =>{};
+const addRole = () =>{
+  // 'Add Role',
+  // inquire prompt for new name/depart then do query inside the inquire
+  // inquire.prompt
+  // require actual ID 
+return inquirer
+ .prompt([
+  {
+  type: 'input',
+  name: 'title',
+  message: "Enter role name:",
+  },
+  {
+    type: 'input',
+    name: 'salary',
+    message: "Enter Role Salary amount:",
+  },
+  {
+    type: 'input',
+    name: 'department_id',
+    message: "Enter department ID:",
+  },
+ ])
+ .then ((input)=> {
+  const roleInfo = [input.title, input.salary, input.department_id];
+  const add = `INSERT INTO roles (title, salary, department_id) VALUES (?,?,?)`;
+  con.query(add, roleInfo, (err, res) => {
+    if (err) throw err;
+    return input
+  });
+ })
+  .then(()=> {
+    empStart();
+  });
+};
 
 // 'Update Role',
 const updateRole = () =>{};
 
 // 'Add Employee',
-const addEmployee =() =>{};
+const addEmployee =() =>{
+  return inquirer
+  .prompt ([
+    {
+      type: "input",
+      name: "first_name",
+      message: "Enter First Name:",
+    },
+    {
+      type: "input",
+      name: "last_name",
+      message: "Enter Last Name:",
+    },
+    {
+      type: "input",
+      name: "role_id",
+      message: "Select Role ID:",
+    },
+    {
+      type: "list",
+        name: "manager_id",
+        message: "Select Manager ID:",
+        choices: ["",""],
+    },
+  ])
+    .then
+};
