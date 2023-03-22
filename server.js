@@ -61,8 +61,10 @@ const empStart = (data) => {
         break;
       case 'All Employees':
         allEmployees();
+        break;
       case 'Add Employee':
         addEmployee();
+        break;
         case 'Update Employee':
         updateEmployee();
         break;
