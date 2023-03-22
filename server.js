@@ -51,8 +51,9 @@ const empStart = (data) => {
       case "All Departments":
         allDepartments();
         break;
-      case 'Add Departments':
+      case 'Add Department':
           addDepartment();
+          break;
       case 'All Roles':
         allRoles();
         break;
@@ -65,7 +66,7 @@ const empStart = (data) => {
       case 'Add Employee':
         addEmployee();
         break;
-        case 'Update Employee':
+      case 'Update Employee':
         updateEmployee();
         break;
     }
@@ -94,14 +95,16 @@ const addDepartment = () =>{
   .prompt([
     {
       type: 'input',
-      name: 'department_name',
+      name: 'name',
       message: "Add your department name:",
     },
   ])
   .then((input) => {
-    const add = `INSERT INTO department (name) VALUES (?)`;
     const inputs = input.name;
-    con.query(add, inputs, (err, res) => { return input;});
+    const add = `INSERT INTO department (department_name) VALUES (?)`;
+    con.query(add, inputs, (err, res) => { 
+      if(err) throw err;
+      return input;});
   })
   .then(()=> {empStart();});
 };
@@ -234,8 +237,12 @@ const addEmployee =() =>{
       },
     ])
     .then ((input)=> {
-      const updateEmp=[ input.id, input.role_id];
-      const add = `UPDATE employee SET role_id = ? WHERE id = ?`
+      const updateEmp=[ input.id, input.role_id,];
+      const add = `UPDATE employee SET role_id = ? WHERE id = ?`;
+      con.query(add, updateEmp, (err, res)=>{
+        if (err) throw err;
+        return input;
+      })
     })
     .then(()=> {
       empStart();
