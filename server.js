@@ -205,5 +205,37 @@ const addEmployee =() =>{
 
   // 'Update Employee',
   const updateEmployee = () =>{
-
+    return inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'id',
+        message: "Current Employee ID:",
+      },
+      // if i have time, I'd like to learn how to update these in the bb with the confirm
+  //     {
+  //       type: "confirm",
+  //       name: "first_name",
+  //       message: "Update first name?",
+  //       default: false
+  //   },
+  //   {
+  //     type: "confirm",
+  //     name: "last_name",
+  //     message: "Update last name?",
+  //     default: false
+  // },
+      {
+        type: 'input',
+        name: 'role_id',
+        message: "Enter New ID:",
+      },
+    ])
+    .then ((input)=> {
+      const updateEmp=[ input.id, input.role_id];
+      const add = `UPDATE employee SET role_id = ? WHERE id = ?`
+    })
+    .then(()=> {
+      empStart();
+    });
   };
