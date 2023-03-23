@@ -237,7 +237,7 @@ const addEmployee =() =>{
       },
     ])
     .then ((input)=> {
-      const updateEmp=[ input.id, input.role_id,];
+      const updateEmp=[ input.role_id, input.id];
       const add = `UPDATE employee SET role_id = ? WHERE id = ?`;
       con.query(add, updateEmp, (err, res)=>{
         if (err) throw err;
