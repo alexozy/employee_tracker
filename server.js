@@ -192,12 +192,31 @@ const addEmployee =() =>{
       type: "list",
         name: "manager_id",
         message: "Select Manager ID:",
-        choices: ["1","2"],
+        choices: ["1"],
+    },
+    {
+      type: "Input",
+        name: "department_id",
+        message: "Select Department: (type number! 1-mgmt, 2-deliv, 3-flor, 4-ov)",
+          
+      },
+    {
+      type: "input",
+        name: "salary",
+        message: "Enter Employee Salary",
     },
   ])
+
+  // .then((input)=>{
+  //   const empInfo = [ input.first_name, input.last_name, input.role_id,input.manager_id,];
+  //   const add = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+  //   con.query (add, empInfo, (err, res)=> {
+  //     if (err) throw err;
+  //     return input;
+  //   });
     .then((input)=>{
-      const empInfo = [ input.first_name, input.last_name, input.role_id,input.manager_id,];
-      const add = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+      const empInfo = [ input.first_name, input.last_name, input.role_id,input.manager_id, input.department_id, input.salary];
+      const add = `INSERT INTO employee (first_name, last_name, role_id, manager_id, department_id, salary) VALUES (?,?,?,?,?,?)`;
       con.query (add, empInfo, (err, res)=> {
         if (err) throw err;
         return input;

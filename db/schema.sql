@@ -22,16 +22,21 @@ CREATE TABLE roles (
     FOREIGN KEY(department_id) REFERENCES department(id)
 );
 
-
+-- need to add department, salary and manager name
 CREATE TABLE employee(
     id INT PRIMARY KEY  AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT,
+    salary INT,
+    department_id INT
     FOREIGN KEY(role_id) REFERENCES roles(id),
-    FOREIGN KEY(manager_id) REFERENCES employee(id)
+    FOREIGN KEY(manager_id) REFERENCES employee(id),
+    FOREIGN KEY(department_id) REFERENCES department(id)
 );
 
+-- code doesn't seem to like department_id as a VARCHAR only INT, will have to change my server prompts to match INT
+    -- department_id VARCHAR(30) NOT NULL,
 
 -- USE

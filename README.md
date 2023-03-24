@@ -20,10 +20,10 @@ node | JavaScript | mysql2 | Inquirer |
 
 ## Application Recording
 
-[Screenrecording](https://github.com/alexozy/employee_tracker)
+[Screenrecording]()
 
 
 ## Questions
-Follow my Github https://alexozy.github.io/.
+Follow my Github https://github.com/alexozy
 
 If you want to contact me you can reach me at alexanoz@outlook.com .
