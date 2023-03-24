@@ -29,11 +29,11 @@ CREATE TABLE employee(
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT,
-    salary INT,
-    department_id INT
+    -- salary INT,
+    -- department_id INT
     FOREIGN KEY(role_id) REFERENCES roles(id),
-    FOREIGN KEY(manager_id) REFERENCES employee(id),
-    FOREIGN KEY(department_id) REFERENCES department(id)
+    FOREIGN KEY(manager_id) REFERENCES employee(id)
+    -- FOREIGN KEY(department_id) REFERENCES department(id)
 );
 
 -- code doesn't seem to like department_id as a VARCHAR only INT, will have to change my server prompts to match INT
