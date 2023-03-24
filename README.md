@@ -15,7 +15,7 @@ Ever wanted to track your employees? Well you can do that now using this state o
 This is not a live application -- no live link will be provided. Users are encouraged to download the packages in "Technologies Used" and run clone the code locally.
 
 ## Technologies Used
-node | JavaScript | mysql2 | Inquirer |
+node | JavaScript | mysql2 | Inquirer | console.table | 
 
 
 ## Application Recording
