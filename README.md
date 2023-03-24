@@ -20,7 +20,7 @@ node | JavaScript | mysql2 | Inquirer |
 
 ## Application Recording
 
-[Screenrecording]()
+[Screenrecording](https://watch.screencastify.com/v/osgDjLhYykmIYOLkrDdk)
 
 
 ## Questions
